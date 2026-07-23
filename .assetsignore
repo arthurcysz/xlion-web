@@ -1,0 +1,15 @@
+# 不作为网站公开资源上传的文件（Cloudflare Workers 静态资源）
+# node_modules 由构建时 `npx wrangler` 生成，必须排除（含 >100MB 的 workerd，超 25MiB 上限）
+node_modules
+.git
+.gitignore
+.assetsignore
+wrangler.toml
+server.js
+package.json
+package-lock.json
+railway.json
+netlify.toml
+deploy.sh
+*.md
+xlion-site.zip

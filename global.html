@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https://*.basemaps.cartocdn.com https://www.google-analytics.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; connect-src 'self' https://api.web3forms.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; font-src 'self'; media-src 'self'; form-action 'self' https://api.web3forms.com">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D4V8GSEGJS"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});gtag('config','G-D4V8GSEGJS');</script>
+<title>Global | X-LION · Tergeo</title>
+<meta name="description" content="X-LION global footprint across Europe, North America, Asia, Australia and South Africa — warehousing, retail, brand partnerships and e-commerce.">
+<link rel="canonical" href="https://x-lion.com.cn/global.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://x-lion.com.cn/global.html">
+<meta property="og:title" content="Global Footprint | X-LION · Tergeo">
+<meta property="og:description" content="Exporting cordless cleaning appliances across Europe, North America, Asia, Australia and South Africa — looking for distributors and brand partners worldwide.">
+<meta property="og:image" content="https://x-lion.com.cn/assets/hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon-180.png">
+<link rel="stylesheet" href="assets/leaflet/leaflet.css">
+<link rel="stylesheet" href="assets/styles.css?v=20260723a">
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" aria-label="X-LION"><img class="logo" src="logo.png" alt="X-LION"></a>
+    <nav class="menu">
+      <a href="index.html" data-en="Home" data-zh="首页">Home</a>
+      <a href="about.html" data-en="About us" data-zh="关于我们">About us</a>
+      <div class="has-dd">
+        <a href="products.html" data-en="Brands" data-zh="品牌">Brands</a><span class="caret">▾</span>
+        <div class="dd">
+          <a href="https://www.tergeoclean.com" data-en="Tergeo" data-zh="Tergeo">Tergeo</a>
+          <a href="#" data-en="X-LION" data-zh="X-LION">X-LION</a>
+        </div>
+      </div>
+      <div class="has-dd">
+        <a href="https://www.tergeoclean.com" target="_blank" rel="noopener noreferrer" data-en="Where to buy" data-zh="购买渠道">Where to buy</a><span class="caret">▾</span>
+        <div class="dd dd-buy">
+          <a href="https://www.tergeoclean.com" target="_blank" rel="noopener noreferrer" title="Tergeo official store"><img src="assets/tergeo.png" alt="Tergeo"></a>
+          <a href="https://www.amazon.com/stores/Tergeo/page/F9741192-7B51-4A02-B65A-0D77AE54CF00?lp_asin=B0GXVYHFWY&amp;ref_=ast_bln" target="_blank" rel="noopener noreferrer" title="Tergeo USA on Amazon" style="font-weight:600;font-size:14.5px">Tergeo USA</a>
+          <a href="https://www.amazon.ca/stores/page/436B30ED-C738-46E5-BB5E-49AF63B65324?ingress=2&amp;lp_context_asin=B0GXVYHFWY&amp;visitId=36b75fce-444a-4a44-8ea6-f34e2a8a99f5&amp;ref_=ast_bln" target="_blank" rel="noopener noreferrer" title="Tergeo CA on Amazon" style="font-weight:600;font-size:14.5px">Tergeo CA</a>
+        </div>
+      </div>
+      <a href="global.html" class="active" data-en="Global" data-zh="全球布局">Global</a>
+      <a href="contact.html" data-en="Contact" data-zh="联系我们">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <div class="lang">
+        <button id="lang-en" class="active" onclick="setLang('en')">EN</button>
+        <button id="lang-zh" onclick="setLang('zh')">中文</button>
+      </div>
+      <a href="contact.html" class="btn" data-en="Become a Partner" data-zh="成为合作伙伴">Become a Partner</a>
+      <button class="burger" onclick="var m=document.querySelector('nav.menu');m.style.display=(getComputedStyle(m).display==='none'?'flex':'none')" aria-label="menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="page-banner">
+  <div class="wrap">
+    <span class="eyebrow" data-en="Global Footprint" data-zh="全球布局">Global Footprint</span>
+    <h1 data-en="Strong presence across global markets" data-zh="覆盖全球的市场版图">Strong presence across global markets</h1>
+    <p data-en="A growing market presence across Europe, North America, Asia, Australia and South Africa." data-zh="在欧洲、北美、亚洲、澳大利亚与南非持续增长的市场布局。">A growing market presence across Europe, North America, Asia, Australia and South Africa.</p>
+  </div>
+</section>
+
+<section class="global">
+  <div class="wrap">
+<div class="worldmap-live" id="worldmap-live"></div>
+    <p class="map-credit" data-en="Map: © OpenStreetMap contributors, © CARTO" data-zh="地图数据：© OpenStreetMap contributors, © CARTO">Map: © OpenStreetMap contributors, © CARTO</p>
+        <div class="reg">
+      <div class="r"><div class="em">EU</div><h3 data-en="Europe" data-zh="欧洲">Europe</h3><p data-en="Warehouse, retail, brands partnerships &amp; e-commerce channels" data-zh="仓储、零售、品牌合作与电商渠道">Warehouse, retail, brands partnerships &amp; e-commerce channels</p></div>
+      <div class="r"><div class="em">NA</div><h3 data-en="North America" data-zh="北美">North America</h3><p data-en="Warehouse, retail, brands partnerships &amp; e-commerce channels" data-zh="仓储、零售、品牌合作与电商渠道">Warehouse, retail, brands partnerships &amp; e-commerce channels</p></div>
+      <div class="r"><div class="em">Asia</div><h3 data-en="Asia" data-zh="亚洲">Asia</h3><p data-en="Corporate HQ, manufacturing, warehouse, retail &amp; brands partnerships" data-zh="公司总部、制造、仓储、零售与品牌合作">Corporate HQ, manufacturing, warehouse, retail &amp; brands partnerships</p></div>
+      <div class="r"><div class="em">AU</div><h3 data-en="Australia" data-zh="澳大利亚">Australia</h3><p data-en="Warehouse, retail, brands partnerships &amp; e-commerce channels" data-zh="仓储、零售、品牌合作与电商渠道">Warehouse, retail, brands partnerships &amp; e-commerce channels</p></div>
+      <div class="r"><div class="em">ZA</div><h3 data-en="South Africa" data-zh="南非">South Africa</h3><p data-en="Warehouse, retail, brands partnerships &amp; e-commerce channels" data-zh="仓储、零售、品牌合作与电商渠道">Warehouse, retail, brands partnerships &amp; e-commerce channels</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="vision">
+  <div class="wrap">
+    <span class="eyebrow" style="color:#ffd9d6" data-en="Partner with us" data-zh="与我们合作">Partner with us</span>
+    <h2 data-en="Let's expand together" data-zh="携手拓展全球市场">Let's expand together</h2>
+    <p data-en="Distribution and brand cooperation welcome across every region." data-zh="欢迎全球各地区的分销与品牌合作。">Distribution and brand cooperation welcome across every region.</p>
+    <div style="margin-top:22px"><a href="contact.html" class="btn btn-light" data-en="Contact Us" data-zh="联系我们">Contact Us</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img class="foot-logo" src="logo.png" alt="X-LION" style="height:44px;background:#fff;padding:8px 12px;border-radius:10px">
+        <p style="max-width:340px;color:#8a949e" data-en="Suzhou X-Lion Electric Co., Ltd. Cordless vacuums, floor washers and smart floorcare under the X-LION &amp; Tergeo brands." data-zh="苏州艾克狮电器有限公司。X-LION 与 Tergeo 品牌，专注无线吸尘器、洗地机与智能地面清洁。">Suzhou X-Lion Electric Co., Ltd. Cordless vacuums, floor washers and smart floorcare under the X-LION &amp; Tergeo brands.</p>
+      </div>
+      <div>
+        <h4 data-en="Products" data-zh="产品">Products</h4>
+        <ul>
+          <li><a href="products.html" data-en="Cordless Vacuums" data-zh="无线吸尘器">Cordless Vacuums</a></li>
+          <li><a href="products.html" data-en="Floor Washers" data-zh="洗地机">Floor Washers</a></li>
+          <li><a href="products.html" data-en="Accessories" data-zh="配件">Accessories</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-en="Company" data-zh="公司">Company</h4>
+        <ul>
+          <li><a href="about.html" data-en="About Us" data-zh="关于我们">About Us</a></li>
+          <li><a href="technology.html" data-en="Technology" data-zh="核心技术">Technology</a></li>
+          <li><a href="certifications.html" data-en="Certifications" data-zh="认证资质">Certifications</a></li>
+          <li><a href="global.html" data-en="Global Footprint" data-zh="全球布局">Global Footprint</a></li>
+          <li><a href="contact.html" data-en="Contact" data-zh="联系我们">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-en="Get in Touch" data-zh="联系方式">Get in Touch</h4>
+        <ul>
+          <li>📞 +86 181 6899 9591</li>
+          <li>📧 contact@x-lion.com.cn</li>
+          <li>🌐 www.x-lion.com.cn</li>
+          <li data-en="📍 Wujiang, Suzhou, China" data-zh="📍 中国苏州吴江">📍 Wujiang, Suzhou, China</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Suzhou X-Lion Electric Co., Ltd. <span data-en="All rights reserved." data-zh="版权所有。">All rights reserved.</span></span>
+      <span><a href="privacy.html" data-en="Privacy Policy" data-zh="隐私政策">Privacy Policy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/leaflet/leaflet.js"></script>
+<script defer src="assets/app.js"></script>
+</body>
+</html>

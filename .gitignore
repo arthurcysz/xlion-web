@@ -1,0 +1,37 @@
+# --- Dev / internal docs (do not publish) ---
+CLAUDE.md
+进度记录.md
+网站规划.md
+部署说明.md
+海外推广与SEO方案.md
+
+# --- Source files (PDF originals, logo sources, product source images) ---
+*.pdf
+!assets/datasheets/*.pdf
+tergeo-render.png
+tergeo-crop.png
+V40 图片(1)/
+V50图片(1)/
+
+# --- Backups ---
+*-old-backup.*
+*-keyed-backup.*
+*-blackbg-backup.*
+hero-old-backup.*
+
+# --- Old / junk ---
+xlion-site.zip
+ziiJu0j2
+*.mp4
+!assets/*.mp4
+assets/p*_x*.png
+assets/vac-v40.png
+assets/vac-v50.png
+logo-new.png
+
+# --- OS ---
+.DS_Store
+
+# Node / Railway
+node_modules/
+global-staticmap-backup.html

@@ -1,0 +1,44 @@
+# Netlify 配置 —— 纯静态站,根目录发布,无构建步骤。
+# 安全头走 _headers 文件（Netlify 原生支持）；自定义 404 走 404.html。
+[build]
+  publish = "."
+  command = ""
+
+# 把基础设施 / 源文件挡成 404（Netlify 支持 404 状态码；
+# force=true 让规则覆盖真实存在的文件，否则 Netlify 会直接返回该文件。
+# Cloudflare 那边用 .assetsignore 排除，两套互不影响）。
+[[redirects]]
+  from = "/server.js"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/package.json"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/package-lock.json"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/railway.json"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/deploy.sh"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/wrangler.toml"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/netlify.toml"
+  to = "/404.html"
+  status = 404
+  force = true

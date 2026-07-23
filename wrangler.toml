@@ -1,0 +1,9 @@
+# Cloudflare Workers 静态资源配置 —— 把整个站点作为静态网站发布。
+# 部署命令 `npx wrangler deploy` 会读取本文件。
+name = "xlion-site"
+compatibility_date = "2026-07-05"
+
+[assets]
+directory = "."
+# 找不到页面时返回自定义 404 页
+not_found_handling = "404-page"
