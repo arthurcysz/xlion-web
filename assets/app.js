@@ -88,34 +88,64 @@ function initCategories(){
   if(reset) reset.addEventListener('click',function(e){ e.preventDefault(); filterCat('all'); });
 }
 
-/* ---- interactive world map (global page, Leaflet + CARTO tiles) ---- */
-const REGIONS_GEO=[
-  {lat:39.5,lng:-98.35,en:"North America",zh:"北美"},
-  {lat:50,lng:10,en:"Europe",zh:"欧洲"},
-  {lat:34,lng:108,en:"Asia",zh:"亚洲"},
-  {lat:-29,lng:24,en:"South Africa",zh:"南非"},
-  {lat:-25,lng:133,en:"Australia",zh:"澳大利亚"}
-];
-let _mapMarkers=[];
-function initWorldMapLive(){
-  const el=document.getElementById('worldmap-live');
-  if(!el || typeof L==='undefined' || el._leaflet_id) return;
-  const lang=loadLang();
-  const map=L.map(el,{scrollWheelZoom:false,zoomControl:true,worldCopyJump:true,minZoom:1,attributionControl:false});
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png',{
-    subdomains:'abcd', maxZoom:18,
-    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer">CARTO</a>'
-  }).addTo(map);
-  const pts=[];
-  REGIONS_GEO.forEach(r=>{
-    const m=L.circleMarker([r.lat,r.lng],{radius:8,color:'#fff',weight:2,fillColor:'#E1241B',fillOpacity:1}).addTo(map);
-    m.bindTooltip(lang==='zh'?r.zh:r.en,{permanent:true,direction:'top',offset:[0,-8],className:'map-lbl'});
-    m._reg=r; _mapMarkers.push(m); pts.push([r.lat,r.lng]);
+/* ---- self-hosted world map: zoom and drag without external map APIs ---- */
+function initWorldMap(){
+  const map=document.getElementById('worldmap');
+  if(!map || map.dataset.ready) return;
+  const stage=map.querySelector('.worldmap-stage');
+  const zoomIn=map.querySelector('[data-map-action="in"]');
+  const zoomOut=map.querySelector('[data-map-action="out"]');
+  const reset=map.querySelector('[data-map-action="reset"]');
+  if(!stage) return;
+
+  const minScale=1, maxScale=3;
+  let scale=1, x=0, y=0, dragging=false, startX=0, startY=0;
+  const clamp=function(v,min,max){ return Math.max(min,Math.min(max,v)); };
+  const constrain=function(){
+    const maxX=map.clientWidth*(scale-1)/2;
+    const maxY=map.clientHeight*(scale-1)/2;
+    x=clamp(x,-maxX,maxX);
+    y=clamp(y,-maxY,maxY);
+  };
+  const draw=function(){
+    constrain();
+    stage.style.transform=`translate(${x}px,${y}px) scale(${scale})`;
+    if(zoomOut) zoomOut.disabled=scale<=minScale;
+    map.classList.toggle('is-zoomed',scale>minScale);
+  };
+  const setScale=function(next,focusX=0,focusY=0){
+    next=clamp(Math.round(next*100)/100,minScale,maxScale);
+    if(next===scale) return;
+    const ratio=next/scale;
+    x=focusX-(focusX-x)*ratio;
+    y=focusY-(focusY-y)*ratio;
+    scale=next;
+    draw();
+  };
+
+  if(zoomIn) zoomIn.addEventListener('click',()=>setScale(scale+.4));
+  if(zoomOut) zoomOut.addEventListener('click',()=>setScale(scale-.4));
+  if(reset) reset.addEventListener('click',()=>{scale=1;x=0;y=0;draw();});
+  map.addEventListener('wheel',function(e){
+    e.preventDefault();
+    const r=map.getBoundingClientRect();
+    setScale(scale+(e.deltaY<0?.25:-.25),e.clientX-r.left-r.width/2,e.clientY-r.top-r.height/2);
+  },{passive:false});
+  stage.addEventListener('pointerdown',function(e){
+    if(scale<=1) return;
+    dragging=true; startX=e.clientX-x; startY=e.clientY-y;
+    stage.setPointerCapture(e.pointerId); map.classList.add('is-dragging');
   });
-  map.fitBounds(pts,{padding:[45,45]});
-}
-function updateMapLabels(lang){
-  _mapMarkers.forEach(m=>{ if(m._reg) m.setTooltipContent(lang==='zh'?m._reg.zh:m._reg.en); });
+  stage.addEventListener('pointermove',function(e){
+    if(!dragging) return;
+    x=e.clientX-startX; y=e.clientY-startY; draw();
+  });
+  const stopDrag=function(){dragging=false;map.classList.remove('is-dragging');};
+  stage.addEventListener('pointerup',stopDrag);
+  stage.addEventListener('pointercancel',stopDrag);
+  window.addEventListener('resize',draw);
+  map.dataset.ready='true';
+  draw();
 }
 
 function initHeroSlides(){
@@ -142,7 +172,6 @@ function setLang(lang){
   if(be) be.classList.toggle('active',lang==='en');
   if(bz) bz.classList.toggle('active',lang==='zh');
   renderProducts(lang);
-  if(_mapMarkers.length) updateMapLabels(lang);
   saveLang(lang);
 }
 
@@ -268,7 +297,7 @@ document.addEventListener('DOMContentLoaded',function(){
   setLang(loadLang());
   initHeroSlides();
   initCategories();
+  initWorldMap();
   initInquiryForm();
-  initWorldMapLive();
   initCookieConsent();
 });
