@@ -1,0 +1,12 @@
+{
+  "name": "xlion-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "X-LION / Tergeo corporate website — static site served by a zero-dependency Node server (Railway-ready).",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
