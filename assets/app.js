@@ -90,11 +90,9 @@ function initCategories(){
 
 /* ---- interactive world map (Leaflet + OpenStreetMap) ---- */
 const REGIONS_GEO=[
-  {lat:39.5,lng:-98.35,en:"North America",zh:"北美"},
-  {lat:50,lng:10,en:"Europe",zh:"欧洲"},
-  {lat:34,lng:108,en:"Asia",zh:"亚洲"},
-  {lat:-29,lng:24,en:"South Africa",zh:"南非"},
-  {lat:-25,lng:133,en:"Australia",zh:"澳大利亚"}
+  {lat:54,lng:-2,en:"United Kingdom",zh:"英国"},
+  {lat:39.5,lng:-98.35,en:"United States",zh:"美国"},
+  {lat:56,lng:-106,en:"Canada",zh:"加拿大"}
 ];
 let _mapMarkers=[];
 function initWorldMapLive(){

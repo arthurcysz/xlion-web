@@ -335,16 +335,12 @@ footer a:hover{color:#fff}
   .cats{grid-template-columns:repeat(2,1fr)}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
-@media(max-width:760px){
+@media(max-width:1200px){
+  .nav-cta .btn{display:none}
+}
+@media(max-width:1000px){
   nav.menu{display:none}
   .burger{display:flex}
-  .hero .wrap,.tech-grid,.pet .wrap,.about .wrap,.contact .wrap,.brands .wrap{grid-template-columns:1fr}
-  .brand:first-child{border-right:none;border-bottom:1px solid #2a3540}
-  .grid,.reg{grid-template-columns:1fr}
-  section{padding:54px 0}
-
-  /* 顶部大 CTA 按钮在手机上隐藏（避免挤成多行），Contact 可从菜单进入 */
-  .nav-cta .btn{display:none}
   .nav-cta{gap:10px}
   /* 手机汉堡菜单：竖直下拉面板，下拉子项直接展开可点 */
   nav.menu{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 12px 26px rgba(0,0,0,.10);padding:6px 22px 16px}
@@ -356,6 +352,12 @@ footer a:hover{color:#fff}
   .dd a{padding:11px 2px;font-size:15px}
   .dd-buy a{justify-content:flex-start;border:none;margin:0;padding:10px 2px}
   .dd-buy a:first-child img{width:92px;height:auto;max-width:none}
+}
+@media(max-width:760px){
+  .hero .wrap,.tech-grid,.pet .wrap,.about .wrap,.contact .wrap,.brands .wrap{grid-template-columns:1fr}
+  .brand:first-child{border-right:none;border-bottom:1px solid #2a3540}
+  .grid,.reg{grid-template-columns:1fr}
+  section{padding:54px 0}
 }
 
 /* cookie consent banner */
